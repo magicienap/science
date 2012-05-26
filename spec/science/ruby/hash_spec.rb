@@ -7,7 +7,7 @@ describe Hash do
     @hash = { key1: "Hello", key2: "Test", "key" => "It works!" }
   end
   
-  describe "#has_keys" do
+  describe "#has_keys?" do
     it "returns true if all the keys provided are in the hash" do
       @hash.has_keys?([:key1, :key2]).should be_true
     end
