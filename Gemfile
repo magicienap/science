@@ -10,6 +10,6 @@ group :development do
   gem "rspec"
   gem "yard"
   gem "bundler"
-  gem "jeweler", "~> 1.8.3"
-  gem "rcov", ">= 0"
+  gem "jeweler", github: "magicienap/jeweler"
+  gem "simplecov"
 end
