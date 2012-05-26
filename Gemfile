@@ -11,5 +11,5 @@ group :development do
   gem "yard"
   gem "bundler"
   gem "jeweler", github: "magicienap/jeweler"
-  gem "simplecov"
+  gem "simplecov", require: false
 end
