@@ -85,7 +85,6 @@ describe Science::Angle do
       it "returns the angle with the specified unit passed as argument as a string" do
         @degrees.to_s(:rad).should eq("6.108652381980153 rad")
         @radians.to_s(:deg).should eq("180.0°")
-        puts @radians.degrees
       end
       
       it "raises an exception if the unit is not degrees or radians" do

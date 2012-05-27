@@ -13,7 +13,7 @@ module Science
     # Instantiates a new Angle object.
     # @param [Number] angle The value of the angle.
     # @param [Symbol] unit A symbol representing the unit of the angle (:degrees or :deg; :radians or :rad)
-    # @return [Angle] The new Angle object.
+    # @return [Science::Angle] The new Angle object.
     def initialize(angle, unit)
       case unit
         when :degrees, :deg then convert_and_normalize_degrees(angle)
