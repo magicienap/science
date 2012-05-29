@@ -20,7 +20,7 @@ module Science
         @norm = options[:norm]
         case options[:orientation]
           when Science::Angle then @orientation = options[:orientation]
-          else @orientation = Science::Angle.new(options[:orientation], :radians)
+          else @orientation = options[:orientation].radians
         end
         calculate_components
       elsif options.has_keys? [:x, :y]
@@ -67,28 +67,28 @@ module Science
       end
       
       # Calculates the orientation of the vector.
+      # @return [Science::Angle] The trigonometric angle of the vector.
       def calculate_orientation
         x, y = @components.values
         if x.pos? and y.zero?
-          Science::Angle.new(0, :deg)
+          0.deg
         elsif x.zero? and y.pos?
-          Science::Angle.new(90, :deg)
+          90.deg
         elsif x.neg? and y.zero?
-          Science::Angle.new(180, :deg)
+          180.deg
         elsif x.zero? and y.neg?
-          Science::Angle.new(270, :deg)
+          270.deg
         elsif x.pos? and y.pos?
-          angle_in_rad = Science::Angle.new(Math.atan( y/x ), :rad)
-          Science::Angle.new(angle_in_rad.deg, :deg)
+          Math.atan( y/x ).rad # Will return an Angle object (with the property "degrees")
         elsif x.neg? and y.pos?
-          angle_in_rad = Science::Angle.new(Math.atan( y/x.abs ), :rad)
-          Science::Angle.new(180 - angle_in_rad.deg, :deg)
+          angle = Math.atan( y/x.abs ).rad
+          (180 - angle.deg).deg # Will return an Angle object (with the property "degrees")
         elsif x.neg? and y.neg?
-          angle_in_rad = Science::Angle.new(Math.atan( y.abs/x.abs ), :rad)
-          Science::Angle.new(180 + angle_in_rad.deg, :deg)
+          angle = Math.atan( y.abs/x.abs ).rad
+          (180 + angle.deg).deg # Will return an Angle object (with the property "degrees")
         elsif x.pos? and y.neg?
-          angle_in_rad = Science::Angle.new(Math.atan( y.abs/x ), :rad)
-          Science::Angle.new(360 - angle_in_rad.deg, :deg)
+          angle = Math.atan( y.abs/x ).rad
+          (360 - angle.deg).deg
         end
       end
     

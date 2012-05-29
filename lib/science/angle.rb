@@ -95,7 +95,22 @@ module Science
   end
 end
 
+class Numeric
+  # Instantiates a new Science::Angle with the unit "degrees".
+  # @return [Science::Angle] A new Science::Angle object (in degrees).
+  def degrees
+    Science::Angle.new(self, :degrees)
+  end
+  alias deg degrees
+  
+  # Instantiates a new Science::Angle with the unit "radians".
+  # @return [Science::Angle] A new Science::Angle object (in radians).
+  def radians
+    Science::Angle.new(self, :radians)
+  end
+  alias rad radians
+end
+
 # Notes
-# - Add Numeric#rad and Numeric#deg -> return an Angle object
 # - Support all Numeric operations
 # - Support Math operations (trigonometic : cos, sin, tan...)

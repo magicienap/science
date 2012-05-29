@@ -94,3 +94,17 @@ describe Science::Angle do
     end
   end
 end
+
+describe Numeric do
+  describe "conversion to an angle" do
+    it "instantiates a new Angle from a Numeric instance" do
+      15.deg.class.should equal(Science::Angle)
+      15.degrees.class.should equal(Science::Angle)
+      15.deg.degrees.should equal(15)
+      
+      2.rad.class.should equal(Science::Angle)
+      2.radians.class.should equal(Science::Angle)
+      2.rad.radians.should equal(2)
+    end
+  end
+end
