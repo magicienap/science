@@ -31,6 +31,20 @@ module Science
       end
     end
     
+    # Returns a representation of the vector as a string.
+    # @param
+    # @return [String] The vector as a string.
+    def to_s(angle_unit = :degrees)
+      string = <<EOS
+Vector :
+- x = #{x}
+- y = #{y}
+- norm = #{norm}
+- orientation = #{orientation.to_s(angle_unit)}
+EOS
+      string
+    end
+    
     # Returns the x component of the vector.
     # @return [Number] The x component of the vector.
     def x
@@ -48,6 +62,18 @@ module Science
     # @return [Science::Vector] A new vector with the vectors added.
     def +(vector)
       Science::Vector.new(x: x + vector.x, y: y + vector.y)
+    end
+    
+    # Determines the linear combination of the vector from vector1 and vector2.
+    # @param [Science::Vector] vector1 The first vector.
+    # @param [Science::Vector] vector2 The second vector.
+    # @return [Hash] A hash containing the keys k1 (for vector1) and k2 (for vector2).
+    def linear_combination(vector1, vector2)
+      u, v, w = vector1, vector2, self
+      
+      k2 = ( (u.x*w.y - u.y*w.x) / ( (-u.y)*v.x + u.x*v.y ) )
+      k1 = (w.x - v.x * k2) / u.x
+      { k1: k1, k2: k2 };
     end
     
     private
@@ -94,3 +120,4 @@ module Science
     
   end
 end
+

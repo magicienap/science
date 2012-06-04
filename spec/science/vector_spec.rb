@@ -102,6 +102,7 @@ describe Science::Vector do
   end
   
   describe "math operations" do
+    # To be completed with v3
     it "supports addition of two vectors" do
       v1 = Science::Vector.new(x: 10, y: 5)
       v2 = Science::Vector.new(x: -7, y: -3)
@@ -118,6 +119,35 @@ describe Science::Vector do
     it "supports multiplication of two vectors (scalar product or dot product)"
     it "supports unary plus"
     it "supports unary minus"
+  end
+  
+  describe "linear combination" do
+    it "calculates the linear combination of two vectors" do
+      # First test...
+      w = Science::Vector.new(x: 16, y: 26)
+      u = Science::Vector.new(x: 2, y: 5)
+      v = Science::Vector.new(x: 3, y: 4)
+      
+      result = w.linear_combination(u, v)
+      result[:k1].should be(2)
+      result[:k2].should be(4)
+      
+      # Second test...
+      w = Science::Vector.new(x: 1, y: -1)
+      u = Science::Vector.new(x: 19, y: 23)
+      v = Science::Vector.new(x: -2, y: 0)
+      
+      result = w.linear_combination(u, v)
+      result[:k1].should eq(-1/23)
+      result[:k2].should eq(-21/23)
+    end
+  end
+  
+  describe "string representation" do
+    it "represents a vector as a string" do
+      vector = Science::Vector.new(x: 16, y: 26)
+      vector.to_s.should eq("Vector :\n- x = 16\n- y = 26\n- norm = 30.528675044947494\n- orientation = 58.392497753751094°\n")
+    end
   end
   
   # Comparison
